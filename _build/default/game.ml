@@ -5,7 +5,7 @@ let () = print_endline "Rentrer la taille de la grille:"
 let l = read_int ()
 let () = print_endline "Rentrer le nombre de couleurs (max 8):"
 let c = read_int ()
-let a_c = [|Color.blue; Color.yellow; Color.orange; Color.magenta; Color.red; Color.green; Color.lime; Color.pink|]
+let a_c = [|Color.blue; Color.yellow; Color.orange; Color.beige; Color.red; Color.green; Color.lime; Color.pink|]
 
 let init_array l =
   let g = Array.make l [|0|] in
