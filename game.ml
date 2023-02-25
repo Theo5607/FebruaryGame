@@ -37,23 +37,23 @@ let color_click () =
   if is_mouse_button_pressed Left then g.((get_mouse_x () - 100) / 16).((get_mouse_y () - 100) / 16)
   else -1*)
 
-let grid_coloring grille couleur =
-  let t = Array.length grille in
-  let base_color = grille.(0).(0) in
-  let rec aux x y grille =
-    if grille.(x).(y) = base_color then(
-      grille.(x).(y) <- couleur;
-      match (x, y) with
+let grid_coloring couleur =
+  let base_color = g.(0).(0) in
+  let rec aux x y =
+    if g.(x).(y) = base_color then
+      g.(x).(y) <- couleur;
+      match x, y with
       | 0, 0 -> aux 1 0; aux 0 1;
-      | (t-1),(t-1) -> aux (t-2) (t-1); aux (t-1) (t-2);
-      | (t-1), 0 -> aux (t-2) 0; aux (t-1) 1;
-      | 0, (t-1) -> aux 1 (t-1); aux 0 (t-2);  
-      | (t-1), y -> aux (t-1) (y-1); aux (t-1) (y+1); aux (t-2) y;
-      | x, (t-1) -> aux (x-1) (t-1); aux (x+1) (t-1); aux x t-2);
+      | (l-1), (l-1) -> aux (l-2) (l-1); aux (l-1) (l-2);
+      | (l-1), 0 -> aux (l-2) 0; aux (l-1) 1;
+      | 0, (l-1) -> aux 1 (l-1); aux 0 (t-2);  
+      | (l-1), y -> aux (t-1) (y-1); aux (t-1) (y+1); aux (t-2) y;
+      | x, (l-1) -> aux (x-1) (t-1); aux (x+1) (t-1); aux x (t-2);
       | 0, y -> aux 1 y; aux 0 (y-1); aux 0 (y+1);
-      | x,0 -> aux x 1; aux (x-1) 0; aux (x+1) 0;
-      | x,y -> aux (x-1) y; aux (x+1) y; aux x (y-1); aux x (y+1); ) in
-  aux 0 0 grille;
+      | x, 0 -> aux x 1; aux (x-1) 0; aux (x+1) 0;
+      | x, y -> aux (x-1) y; aux (x+1) y; aux x (y-1); aux x (y+1)
+    else ()
+  in aux 0 0
 
 
 let setup () =
