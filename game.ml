@@ -48,6 +48,7 @@ let grid_coloring couleur =
       else if y = (l - 1) then(aux (x - 1) (l - 1); aux (x + 1) (l - 1); aux x (l - 2);)
       else if x = 0 then(aux 1 y; aux 0 (y - 1); aux 0 (y + 1);)
       else if y = 0 then(aux x 1; aux (x - 1) 0; aux (x + 1) 0;)
+      else if x = (l-1) then(aux (x-1) y; aux x (y-1); aux x (y+1);)
       else aux (x - 1) y; aux (x + 1) y; aux x (y - 1); aux x (y + 1))
     else ()
   in aux 0 0
