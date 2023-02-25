@@ -54,6 +54,14 @@ let grid_coloring couleur =
     else ()
   in aux 0 0)
 
+let gagner grille = let valeur = ref true in
+  let couleur_base = grille.(0).(0) in
+  for i = 0 to l-1 do 
+    for j = 0 to l-1 do 
+      valeur := grille.(i).(j) = couleur_base && (!valeur);
+    done;
+  done;
+  !valeur;
 
 let setup () =
   init_window (l*32) (l*32) "Flood it";
