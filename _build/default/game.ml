@@ -38,7 +38,8 @@ let color_click () =
 
 let grid_coloring couleur =
   let base_color = g.(0).(0) in
-  let rec aux x y =
+  if base_color = couleur then ()
+  else (let rec aux x y =
     if g.(x).(y) = base_color then(
       g.(x).(y) <- couleur;
       if x = 0 && y = 0 then(aux 1 0; aux 0 1;)
@@ -51,7 +52,7 @@ let grid_coloring couleur =
       else if y = 0 then(aux x 1; aux (x - 1) 0; aux (x + 1) 0;)
       else (aux (x - 1) y; aux (x + 1) y; aux x (y - 1); aux x (y + 1)))
     else ()
-  in aux 0 0
+  in aux 0 0)
 
 
 let setup () =
