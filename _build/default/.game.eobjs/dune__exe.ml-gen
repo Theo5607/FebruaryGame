@@ -1,0 +1,6 @@
+(** @canonical Dune__exe.Code *)
+module Code = Dune__exe__Code
+
+
+(** @canonical Dune__exe.Game *)
+module Game = Dune__exe__Game
