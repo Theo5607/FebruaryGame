@@ -28,12 +28,12 @@ let colors () =
 let grid () =
   for i = 0 to l - 1 do
     for j = 0 to l - 1 do
-        draw_rectangle (((500-l*16)/2) + j*16) (((500-l*16)/2) + i*16) 16 16 a_c.(g.(i).(j))
+        draw_rectangle (j*16) (i*16) 16 16 a_c.(g.(i).(j))
     done;
   done
 
 let color_click () =
-  if is_mouse_button_pressed Left then g.((get_mouse_x () - ((500-l*16)/2)) / 16).((get_mouse_y () - ((500-l*16)/2)) / 16)
+  if is_mouse_button_pressed Left then g.(get_mouse_x () / 16).(get_mouse_y () / 16)
   else -1
 
 let grid_coloring couleur =
@@ -54,7 +54,7 @@ let grid_coloring couleur =
 
 
 let setup () =
-  init_window 500 500 "Flood it";
+  init_window (l*16) (l*16) "Flood it";
   set_target_fps 60;
   colors ();
   begin_drawing ();
