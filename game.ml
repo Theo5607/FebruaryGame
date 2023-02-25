@@ -3,18 +3,18 @@ open Random
 
 let l = read_int ()
 let t = [|Color.blue; Color.yellow; Color.orange; Color.green; Color.red; Color.green|]
-let g = Array.make (l*l + 1) Color.white
+let g = Array.make (l*l + 1) 0
 
 let colors () =
   for i = 0 to (l*l) do
     self_init ();
-    g.(i) <- t.(int 5)
+    g.(i) <- int 5
   done
 
 let grid () =
   for i = 0 to l do
     for j = 0 to l do
-        draw_rectangle (100 + j*16) (100 + i*16) 16 16 g.(i*j)
+        draw_rectangle (100 + j*16) (100 + i*16) 16 16 t.(g.(i*j))
     done;
   done
 
