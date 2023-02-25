@@ -1,18 +1,19 @@
 open Raylib
 open Random
 
+let l = read_int ()
 let t = [|Color.blue; Color.yellow; Color.orange; Color.green; Color.red; Color.green|]
-let g = Array.make ((14*14) - 1) Color.white
+let g = Array.make (l*l + 1) Color.white
 
 let colors () =
-  for i = 0 to (14*14) - 1 do
+  for i = 0 to (l*l) do
     self_init ();
     g.(i) <- t.(int 5)
   done
 
 let grid () =
-  for i = 0 to 14 do
-    for j = 0 to 14 do
+  for i = 0 to l do
+    for j = 0 to l do
         draw_rectangle (100 + j*16) (100 + i*16) 16 16 g.(i*j)
     done;
   done
