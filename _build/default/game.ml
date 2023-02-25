@@ -1,16 +1,22 @@
+open Raylib
+
 let setup () =
-  Raylib.init_window 800 450 "raylib [core] example - basic window";
+  Raylib.init_window 500 500 "raylib [core] example - basic window";
   Raylib.set_target_fps 60
 
+let grid () =
+  let t = [|Color.blue, Color.yellow, Color.orange, Color.green, Color.red, Color.green|] in
+  for i = 0 to 14 do
+    draw_rectangle 100 (8*i) 8 8 t.(3)
+  done;
+
 let rec loop () =
-if Raylib.window_should_close () then Raylib.close_window ()
-else
-  let open Raylib in
-  begin_drawing ();
-  clear_background Color.raywhite;
-  draw_text "Congrats! You created your first window!" 190 200 20
-    Color.lightgray;
-  end_drawing ();
-  loop ()
+  if window_should_close () then close_window ()
+  else
+    begin_drawing ();
+    clear_background Color.raywhite;
+    grid ();
+    end_drawing ();
+    loop ()
 
 let () = setup () |> loop
