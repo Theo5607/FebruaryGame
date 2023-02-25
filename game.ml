@@ -3,7 +3,16 @@ open Random
 
 let l = read_int ()
 let t = [|Color.blue; Color.yellow; Color.orange; Color.green; Color.red; Color.green|]
-let g = Array.make l (Array.make l 0)
+
+let init_array l =
+  let g = Array.make l [|0|] in
+  for i=0 to l-1 do
+    g.(i)<-Array.make l 0
+  done;
+  g
+;;
+
+let g = init_array l
 
 let colors () =
   for i = 0 to l - 1 do
