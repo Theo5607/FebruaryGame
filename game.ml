@@ -28,7 +28,7 @@ let colors () =
 let grid () =
   for i = 0 to l - 1 do
     for j = 0 to l - 1 do
-        draw_rectangle (j*16) (i*16) 16 16 a_c.(g.(i).(j))
+        draw_rectangle (i*16) (j*16) 16 16 a_c.(g.(i).(j))
     done;
   done
 
@@ -41,14 +41,14 @@ let grid_coloring couleur =
   let rec aux x y =
     if g.(x).(y) = base_color then(
       g.(x).(y) <- couleur;
-      if x = 0 && y = 0 then(aux l 0; aux 0 l;)
-      else if x = (l - 1) && y = (l - 1) then(aux (l-2) (l-1); aux (l-1) (l-2);)
-      else if x = (l - 1) && y = 0 then(aux (l-2) 0; aux (l-1) l;)
-      else if x = 0 && y = (l - 1) then(aux 1 (l-1); aux 0 (l-2);)
-      else if y = (l-1) then(aux (x-1) (l-1); aux (x+1) (l-1); aux x (l-2);)
-      else if x = 0 then(aux 1 y; aux 0 (y-1); aux 0 (y+1);)
-      else if y = 0 then(aux x 1; aux (x-1) 0; aux (x+1) 0;)
-      else aux (x-1) y; aux (x+1) y; aux x (y-1); aux x (y+1))
+      if x = 0 && y = 0 then(aux 1 0; aux 0 1;)
+      else if x = (l - 1) && y = (l - 1) then(aux (l - 2) (l - 1); aux (l - 1) (l - 2);)
+      else if x = (l - 1) && y = 0 then(aux (l - 2) 0; aux (l - 1) l;)
+      else if x = 0 && y = (l - 1) then(aux 1 (l - 1); aux 0 (l - 2);)
+      else if y = (l - 1) then(aux (x - 1) (l - 1); aux (x + 1) (l - 1); aux x (l - 2);)
+      else if x = 0 then(aux 1 y; aux 0 (y - 1); aux 0 (y + 1);)
+      else if y = 0 then(aux x 1; aux (x - 1) 0; aux (x + 1) 0;)
+      else aux (x - 1) y; aux (x + 1) y; aux x (y - 1); aux x (y + 1))
     else ()
   in aux 0 0
 
@@ -67,8 +67,8 @@ let rec loop () =
     
     begin_drawing ();
     clear_background Color.raywhite;
-    grid ();
     if color_click () <> -1 then grid_coloring (color_click ());
+    grid ();
     end_drawing ();
     loop ()
 
