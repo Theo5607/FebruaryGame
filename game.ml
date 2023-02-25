@@ -6,6 +6,8 @@ let l = read_int ()
 let () = print_endline "Rentrer le nombre de couleurs (max 8):"
 let c = read_int ()
 let t = [|Color.blue; Color.yellow; Color.orange; Color.green; Color.red; Color.green; Color.brown; Color.pink|]
+let t = [|Color.blue; Color.yellow; Color.orange; Color.green; Color.red; Color.green|]
+
 let init_array l =
   let g = Array.make l [|0|] in
   for i=0 to l-1 do
